@@ -54,7 +54,7 @@ def router(paramstring):
         if params['action'] == 'Select sport':
           sport_list(params['token'],params['sport'])
         if params['action'] == 'play':
-          play_video(params['video'])
+          play_video(params['id'])
     else:
         # If no parameters - then display the top menu
         list_topMenu()  
@@ -98,9 +98,20 @@ def get_topMenu():
 """
 Play video located at the URL
 """
-def play_video(path):
+def play_video(id):
+        
+    playback_info = e.playback_info(id)
+    stream_url = playback_info.get(
+        'data', {}
+    ).get(
+        'attributes', {}
+    ).get(
+        'streaming', {}
+    ).get(
+        'hls', {}
+    ).get('url')
 
     # Create a playable item with a path to play.
-    play_item = ListItem(path=path)
+    play_item = ListItem(path=stream_url)
     # Pass the item to the Kodi player.
     setResolvedUrl(__handle__, True, listitem=play_item)

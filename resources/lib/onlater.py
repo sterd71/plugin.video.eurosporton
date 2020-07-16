@@ -97,20 +97,9 @@ def onlater_list(token):
             item.setProperty('IsPlayable', 'false')
             item.setProperty('inputstreamaddon', 'inputstream.adaptive')
             item.setProperty('inputstream.adaptive.manifest_type', 'hls')
-        
-        
-            playback_info = e.playback_info(video['id'])
-            stream_url = playback_info.get(
-                'data', {}
-            ).get(
-                'attributes', {}
-            ).get(
-                'streaming', {}
-            ).get(
-                'hls', {}
-            ).get('url')
-        
-            url = '{0}?action=play&video={1}'.format(__url__, stream_url)
+            
+            id = video.get('id')
+            url = '{0}?action=play&id={1}'.format(__url__, id)
         
             # is_folder is set to false as there is no sublist 
             isfolder = False
