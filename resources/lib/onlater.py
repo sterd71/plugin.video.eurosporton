@@ -51,11 +51,10 @@ def onlater_list(token):
             if len(availability) > 0:
                 av_window = availability[0]
                 av_start = parse_date(av_window['playableStart'])
-                local = tz.tzlocal()
-                av_startLocal = av_start.replace(tzinfo = local)
-                av_startStr = av_startLocal.strftime("%H:%M")
+                av_startlocal = av_start.astimezone(tz.tzlocal())
+                av_startstr = av_startlocal.strftime("%H:%M")
             
-            title = av_startStr + ' - ' + attrs.get('name')
+            title = av_startstr + ' - ' + attrs.get('name')
 
             if attrs.get('materialType') == 'LINEAR':
                 channel = attrs.get('path')
