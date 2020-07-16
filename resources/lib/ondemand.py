@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-from dateutil.parser import parse as parse_date
-from dateutil import tz
 
 import sys
 import logging
