@@ -28,7 +28,7 @@ system locale so make sure this is set up correctly, otherwise all times will be
   - On demand - This will bring up a list of sports on Eurosport.  Selecting one of these will display a list of available videos.
 Not all sports may have videos available.
 
-![Alt text](resources/media/OnDemand.jpg?raw=true "Available sports)
+![Alt text](resources/media/OnDemand.jpg?raw=true "Available sports")
 
 ![Alt text](resources/media/OnDemandVideos.jpg?raw=true "On demand videos")
 
@@ -37,7 +37,7 @@ Not all sports may have videos available.
 
 There are two ways to get the login token:
 
-###Method 1
+### Method 1
 If you have already installed and used James Muscat's Eurosport2 addon then you can re-use your existing settings.xml file.
 
 After installing EurosportOn, enter the settings panel and enter a dummy token e.g. 123 and click 'OK'.
@@ -49,7 +49,7 @@ Linux ~/.kodi/userdata
 Windows %APPDATA\Kodi\userdata  
 
 
-###Method 2
+### Method 2
 
 Obtain the "st" cookie value from your browser.
 
