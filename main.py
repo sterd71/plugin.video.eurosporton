@@ -4,7 +4,6 @@ import sys
 from resources.lib import kodilogging
 from resources.lib import player
 
-import logging
 import xbmcaddon
 
 # Keep this file to a minimum, as Kodi

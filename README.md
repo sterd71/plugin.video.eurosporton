@@ -1,6 +1,6 @@
 # EurosportOn
 
-This is a fork of the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
+This is built on the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
 
 
 ## Authentication
@@ -11,17 +11,67 @@ As per the previous versions, you must have a valid account for Eurosport Player
 
 ## Changes
 
-- The schedule has been broken down into the following categories:
+A main menu is now presented that breaks down the schedule into different categories.
+
+![Alt text](resources/media/MainMenu.jpg?raw=true "Main menu")
 
   - On earlier - Programmes that were shown earlier in the day and are still available.
-  - On now - Programmes that are being shown on Eurosport 1 and 2 right now.
-  - On later - Programmes coming up on Eurosport 1 and 2 later in the day.  The schedule time uses your
-systems offset to UTC so make sure this is set up correctly, otherwise all times will be shown at UTC +0:00 
-  - On demand - This will bring up a list of sports on Eurosport.  Selecting one of these will display a list of available videos.
-Not all sports will have videos available.
+  - On now - Programmes that are being broadcast on Eurosport 1 and 2.
 
-## 'st' cookie
+  ![Alt text](resources/media/OnNow.jpg?raw=true "On now")
+    
+  - On later - Programmes coming up on Eurosport 1 and 2 later in the day.  The schedule time uses your
+system locale so make sure this is set up correctly, otherwise all times will be shown at UTC +0:00
+
+![Alt text](resources/media/OnLater.jpg?raw=true "On now")
+   
+  - On demand - This will bring up a list of sports on Eurosport.  Selecting one of these will display a list of available videos.
+Not all sports may have videos available.
+
+![Alt text](resources/media/OnDemand.jpg?raw=true "Available sports)
+
+![Alt text](resources/media/OnDemandVideos.jpg?raw=true "On demand videos")
+
+
+## settings.xml
+
+There are two ways to get the login token:
+
+###Method 1
+If you have already installed and used James Muscat's Eurosport2 addon then you can re-use your existing settings.xml file.
+
+After installing EurosportOn, enter the settings panel and enter a dummy token e.g. 123 and click 'OK'.
+
+Then copy settings.xml from your userdata folder `userdata/addon_data/plugin.video.eurosport2` to `userdata/addon_data/plugin.video.eurosporton`
+
+Userdata is located at:  
+Linux ~/.kodi/userdata  
+Windows %APPDATA\Kodi\userdata  
+
+
+###Method 2
+
+Obtain the "st" cookie value from your browser.
+
+- Chrome:
+    - Log into Eurosport player
+    - Press F12 to access developer tools
+    - Select Application
+    - On the left hand side of the popup select Cookies in the Storage section.
+    - Locate the 'st' cookie and copy it's value.
+
+- Firefox:
+    - Log into Eurosport player
+    - Press F12 to access developer tools
+    - Select Storage (you may need to click on '>>' to find it.
+    - Under 'Cookies', locate the 'st' cookie and copy it's value.
+
+- Opera:
+    - Log into Eurosport player
+    - Press <Ctrl>+<Shift>+I to access developer tools
+    - Select Application (you may need to click on '>>' to find it.
+    - Under 'Cookies', locate the 'st' cookie and copy it's value.
 
 ## License
 
-This addon is licensed under the MIT licence - see `LICENSE` for details.
+This addon is licensed under the MIT licence - see [LICENSE](LICENSE) for details.
