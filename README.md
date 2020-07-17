@@ -68,7 +68,7 @@ Obtain the "st" cookie value from your browser.
 
 - Opera:
     - Log into Eurosport player
-    - Press <Ctrl>+<Shift>+I to access developer tools
+    - Press Ctrl+Shift+I to access developer tools
     - Select Application (you may need to click on '>>' to find it.
     - Under 'Cookies', locate the 'st' cookie and copy it's value.
 
