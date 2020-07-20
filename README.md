@@ -9,6 +9,14 @@ The authentication is still using James Muscat's method of copying the value of 
 
 As per the previous versions, you must have a valid account for Eurosport Player for this addon to work
 
+## Installation
+
+- Download the zip file
+- Start Kodi
+- Select addons
+- Select install from zip file
+- Locate the downloaded zip file and click OK to install
+
 ## Changes
 
 A main menu is now presented that breaks down the schedule into different categories.
