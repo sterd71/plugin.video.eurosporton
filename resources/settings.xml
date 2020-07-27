@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-    <category label='General'>
-        <setting id="eurosport-token" type="text" label="Login token" />
+
+    <category label='30000'>
+        <setting label="30001" type="lsep" />
+            <setting id="ondemand-sort-order" type="labelenum" label="30002" values="Latest first|Earliest first|Ending soon" default="Latest first" visible="true" />
+        <setting label="30003" type="lsep" />
+            <setting id="eurosport-token" type="text" label="30004" />
     </category>
-    <category label='On demand'>
-        <setting id="ondemand-sort-order" type="select" label="Sort order" values="Latest first|Earliest first|Ending soon" default="Latest first" visible="true" />
-    </category>
-</settings>
+
+    </settings>

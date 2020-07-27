@@ -6,7 +6,6 @@ from urlparse import parse_qsl
 import xbmcaddon
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItems, endOfDirectory, setContent, setResolvedUrl
-from resources.lib import kodilogging
 from resources.lib.eurosport import Eurosport
 from resources.lib.onearlier import onearlier_list
 from resources.lib.onnow import onnow_list
@@ -14,14 +13,12 @@ from resources.lib.onlater import onlater_list
 from resources.lib.ondemand import ondemand_list
 from resources.lib.sport import sport_list
 
-
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
-kodilogging.config()
 
 token = ADDON.getSetting('eurosport-token')
 logger.info('Using token: {}'.format(token))
-e = Eurosport(token)
+eurosport = Eurosport(token)
 
 # Get the plugin url
 __url__ = sys.argv[0]
@@ -44,15 +41,15 @@ def router(paramstring):
     # Check the parameters passed to the plugin
     if params:
         if params['action'] == 'On earlier':
-          onearlier_list(params['token'])
+          onearlier_list(eurosport)
         if params['action'] == 'On now':
-          onnow_list(params['token'])
+          onnow_list(eurosport)
         if params['action'] == 'On later':
-          onlater_list(params['token'])
+          onlater_list(eurosport)
         if params['action'] == 'On demand':
-          ondemand_list(params['token'])
+          ondemand_list(eurosport)
         if params['action'] == 'Select sport':
-          sport_list(params['token'],params['sport'])
+          sport_list(eurosport, params['sport'])
         if params['action'] == 'play':
           play_video(params['id'])
     else:
@@ -76,7 +73,7 @@ def list_topMenu():
         # Add an item with just the text
         list_item = ListItem(label=menuItem)
         list_item.setInfo('video', {'title': menuItem})
-        url = '{0}?action={1}&token={2}'.format(__url__, menuItem, token)
+        url = '{0}?action={1}'.format(__url__, menuItem)
         is_folder = True
         listing.append((url, list_item, is_folder))
   
@@ -100,7 +97,7 @@ Play video located at the URL
 """
 def play_video(id):
         
-    playback_info = e.playback_info(id)
+    playback_info = eurosport.playback_info(id)
     stream_url = playback_info.get(
         'data', {}
     ).get(
