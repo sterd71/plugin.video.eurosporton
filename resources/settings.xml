@@ -4,7 +4,9 @@
     <category label='30000'>
         <setting label="30001" type="lsep" />
             <setting id="ondemand-sort-order" type="labelenum" label="30002" values="Latest first|Earliest first|Ending soon" default="Latest first" visible="true" />
-        <setting label="30003" type="lsep" />
+        <setting label="30005" type="lsep" />
+            <setting id="engine" type="labelenum" label="30006" values="inputstream.adaptive|ffmpeg|direct" default="inputstream.adaptive" visible="true" />
+            <setting label="30003" type="lsep" />
             <setting id="eurosport-token" type="text" label="30004" />
     </category>
 

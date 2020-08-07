@@ -3,6 +3,17 @@
 This is built on the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
 
 
+## Inputstream adaptive
+
+A few people have found that streams no longer play when they are using inputstream.adaptive on Kodi 18.7 & Kodi 18.8.
+
+Disabling inputstream.adaptive, allowed the stream to play correctly.
+
+A new playback engine option has been added to settings.  It will default to inputstream.adaptive, you can change it to use
+ffmpeg or direct (on my development machine direct used ffmpeg).
+
+If you have problems playing streams, try one of the other options.
+
 ## Authentication
 
 The authentication is still using James Muscat's method of copying the value of the session cookie 'st' into the settings.xml file (see notes below).

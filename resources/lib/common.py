@@ -4,9 +4,13 @@ from dateutil.parser import parse as parse_date
 from dateutil import tz
 
 import sys
+import xbmcaddon
 from xbmcgui import ListItem
 
 def build_list(type, video, listing, response):
+
+    ADDON = xbmcaddon.Addon()
+    engine = ADDON.getSetting('engine')
 
     # Get the plugin url
     __url__ = sys.argv[0]
@@ -102,8 +106,18 @@ def build_list(type, video, listing, response):
             url = '{0}?action=Select sport&sport={1}'.format(__url__, alternateTitle)   
             isfolder = True
         else:    
-            item.setProperty('inputstreamaddon', 'inputstream.adaptive')
-            item.setProperty('inputstream.adaptive.manifest_type', 'hls')
+            if engine == 'inputstream.adaptive':
+                item.setMimeType('application/x-mpegURL')
+                item.setProperty('inputstreamaddon', 'inputstream.adaptive')
+                item.setProperty('inputstream.adaptive.manifest_type', 'hls')
+            if engine == 'ffmpeg':
+                item.setMimeType('application/x-mpegURL')
+                item.setProperty('inputstreamclass', 'inputstream.ffmpegdirect')
+                item.setProperty('inputstream.ffmpegdirect.mime_type', 'hls,applehttp')
+                item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+            if engine == 'direct':
+                item.setMimeType('application/x-mpegURL')
+            
             id = video.get('id')
             url = '{0}?action=play&id={1}'.format(__url__, id)
             isfolder = False

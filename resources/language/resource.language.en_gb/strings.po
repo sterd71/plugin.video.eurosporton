@@ -36,3 +36,14 @@ msgstr ""
 msgctxt "#30004"
 msgid "Login token"
 msgstr ""
+
+
+msgctxt "#30005"
+msgid "Playback engine"
+msgstr ""
+
+
+msgctxt "#30006"
+msgid "Select engine"
+msgstr ""
+
