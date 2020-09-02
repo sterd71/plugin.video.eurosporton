@@ -97,16 +97,31 @@ Play video located at the URL
 """
 def play_video(id):
         
+    ADDON = xbmcaddon.Addon()
+    streamType = ADDON.getSetting('streamType')
     playback_info = eurosport.playback_info(id)
-    stream_url = playback_info.get(
-        'data', {}
-    ).get(
-        'attributes', {}
-    ).get(
-        'streaming', {}
-    ).get(
-        'hls', {}
-    ).get('url')
+
+    if streamType == 'hls':
+        stream_url = playback_info.get(
+            'data', {}
+        ).get(
+            'attributes', {}
+        ).get(
+            'streaming', {}
+        ).get(
+            'hls', {}
+        ).get('url')
+
+    if streamType == 'ism':
+        stream_url = playback_info.get(
+            'data', {}
+        ).get(
+            'attributes', {}
+        ).get(
+            'streaming', {}
+        ).get(
+            'mss', {}
+        ).get('url')
 
     # Create a playable item with a path to play.
     play_item = ListItem(path=stream_url)

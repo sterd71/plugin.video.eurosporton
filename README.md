@@ -3,16 +3,22 @@
 This is built on the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
 
 
-## Inputstream adaptive
+## Streams & Inputstream adaptive
 
-A few people have found that streams no longer play when they are using inputstream.adaptive on Kodi 18.7 & Kodi 18.8.
+Eurosport provide three different stream types: HTTP Live Streaming (hls), Microsoft Smooth Streaming (ism), and Dynamic Adaptive Streaming over HTTP (dash).
 
-Disabling inputstream.adaptive, allowed the stream to play correctly.
+Currently hls and ism are supported by the addon.
 
-A new playback engine option has been added to settings.  It will default to inputstream.adaptive, you can change it to use
-ffmpeg or direct (on my development machine direct used ffmpeg).
+Inputstream.adaptive should be used to play back both hls and ism streams.
 
-If you have problems playing streams, try one of the other options.
+A few people have found that hls streams no longer play when they are using inputstream.adaptive on Kodi 18.7 & Kodi 18.8.
+
+In this case, try using one of the following combinations:
+Playback engine: inputstream adaptive and stream type: ism
+Playback engine: ffmpeg and stream type: hls
+
+(note: a combination of ffmpeg & ism will not currently playback)
+
 
 ## Authentication
 
