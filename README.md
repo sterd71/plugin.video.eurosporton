@@ -14,8 +14,8 @@ Inputstream.adaptive should be used to play back both hls and ism streams.
 A few people have found that hls streams no longer play when they are using inputstream.adaptive on Kodi 18.7 & Kodi 18.8.
 
 In this case, try using one of the following combinations:
-Playback engine: inputstream adaptive and stream type: ism
-Playback engine: ffmpeg and stream type: hls
+- Playback engine: inputstream adaptive and stream type: ism
+- Playback engine: ffmpeg and stream type: hls
 
 (note: a combination of ffmpeg & ism will not currently playback)
 
