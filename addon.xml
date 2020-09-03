@@ -7,7 +7,6 @@
         <import addon="script.module.routing" version="0.2.0"/>
         <import addon="script.module.requests" version="2.7.0"/>
         <import addon="script.module.simplejson" version="3.16.1"/>
-        <import addon="script.module.web-pdb" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="main.py">
         <provides>video</provides>

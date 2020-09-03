@@ -4,7 +4,6 @@ from dateutil.parser import parse as parse_date
 from dateutil import tz
 
 import sys
-import urllib
 import xbmcaddon
 from xbmcgui import ListItem
 
@@ -102,8 +101,6 @@ def build_list(type, video, listing, response):
             item.setProperty('IsPlayable', 'false')
         else:    
             item.setProperty('IsPlayable', 'true')
-
-        #import web_pdb; web_pdb.set_trace()
 
         # Ondemand brings up a list of items to select, not play            
         if type == 'ondemand':
