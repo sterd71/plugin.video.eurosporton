@@ -17,6 +17,8 @@ class Eurosport(object):
 
         self.session.headers = {
             'cookie': 'st={}'.format(token)
+            'x-disco-client': 'WEB:UNKNOWN:esplayer:prod',
+            'x-disco-params': 'realm=eurosport,,'
         }
 
 
