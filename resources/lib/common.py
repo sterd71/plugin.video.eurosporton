@@ -107,7 +107,7 @@ def build_list(type, video, listing, response):
         item.setInfo('video', labels)
 
         if type == 'ondemand':
-            isPlayable = false
+            isPlayable = 'false'
         else:    
             now = datetime.datetime.now(tz.tzutc())
             if av_start_local > now:

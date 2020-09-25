@@ -14,7 +14,7 @@ def sport_sort_key(sport):
     Return list of on demand sports
 """    
 def ondemand_list(eurosport):
-
+    
     # Get the plugin handle
     __handle__ = int(sys.argv[1])
 
