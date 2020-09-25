@@ -3,13 +3,16 @@
 This is built on the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
 
 ## Latest
-Eurosport have changed their API for watching scheduled events so this part of the addon no longer works.
+Eurosport have changed their API for watching scheduled events so this part of the addon has been re-worked.
 
-The Addon is being re-developed to work with the latest changes and a new release should be available soon.
+On entry there is a new menu option called On Schedule.
 
-The OnDemand section is still working.
+Selecting this option will display the dates in the current Eurosport schedule.
 
-Please check back soon for the latest updates
+Selecting a date will bring up the list of videos for that day.
+
+The OnDemand section is still working as before.
+
 
 ## Stream support
 
@@ -49,19 +52,19 @@ As per the previous versions, you must have a valid account for Eurosport Player
 
 ## Changes
 
-A main menu is now presented that breaks down the schedule into different categories.
+A main menu is now presented with just two options: On schedule and On demand.
 
 ![Alt text](resources/media/MainMenu.jpg?raw=true "Main menu")
 
-  - On earlier - Programmes that were shown earlier in the day and are still available.
-  - On now - Programmes that are being broadcast on Eurosport 1 and 2.
+- On schedule will display a list of dates that are currently in the Eurosport schedule.
 
-  ![Alt text](resources/media/OnNow.jpg?raw=true "On now")
+- Selecting a date will display a list of items to play.  If a future date or time is selected then the
+item will not play.
+  
+  ![Alt text](resources/media/ScheduleList.jpg?raw=true "Schedule list")
     
-  - On later - Programmes coming up on Eurosport 1 and 2 later in the day.  The schedule time uses your
-system locale so make sure this is set up correctly, otherwise all times will be shown at UTC +0:00
-
-![Alt text](resources/media/OnLater.jpg?raw=true "On now")
+  
+![Alt text](resources/media/ItemList.jpg?raw=true "Item list")
    
   - On demand - This will bring up a list of sports on Eurosport.  Selecting one of these will display a list of available videos.
 Not all sports may have videos available.
