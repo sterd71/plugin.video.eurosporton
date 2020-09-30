@@ -28,36 +28,40 @@ def onschedule_list(eurosport):
     __handle__ = int(sys.argv[1])
 
     onschedule = eurosport.onschedule()
-    scheduleCollection = onschedule.scheduleCollection()
+    schedule_collection = onschedule.scheduleCollection()
 
     # Create list for items
     listing = []
-    
 
-    #for schedule in sorted(scheduleCollection, key=name_sort_key):
-    for schedule in scheduleCollection:    	
-    	
-        try:        
+    # Get todays date
+    date_today = datetime.today().strftime('%Y-%m-%d')
+    
+    for schedule in schedule_collection:
+
+        try:
             # Collection Id
-            collectionId = schedule.get('id')
+            collection_id = schedule.get('id')
 
             attrs = schedule['attributes']
             
             component = attrs.get('component')
             filters = component.get('filters')
 
-            for scheduleFilter in filters:
-            	 options = scheduleFilter.get('options')
-            	 for option in options:
-                    scheduleStr = option.get('value')
-                    scheduleDate = datetime.strptime(scheduleStr, '%Y-%m-%d')   
-                    format = '%d %B'
-                    title = scheduleDate.strftime(format)  
+            for schedule_filter in filters:
+                options = schedule_filter.get('options')
+                for option in options:
+                    schedule_str = option.get('value')
+                    schedule_date = datetime.strptime(schedule_str, '%Y-%m-%d')   
+                    schedule_format = '%d %B'
+                    if schedule_str == date_today:
+                        title = '[B][COLOR red]' + schedule_date.strftime(schedule_format) + '[/COLOR][/B]'
+                    else:
+                        title = schedule_date.strftime(schedule_format)
                     parameter = option.get('parameter')
                     item = ListItem(title)
                     labels = {'title': title, 'sorttitle': title}
                     item.setInfo('video', labels)
-                    url = '{0}?action=Select date&collid={1}&day={2}'.format(__url__, collectionId, parameter)   
+                    url = '{0}?action=Select date&collid={1}&day={2}'.format(__url__, collection_id, parameter)   
                     isfolder = True
                     # Add item to our listing
                     listing.append((url, item, isfolder))

@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import sys
+
 import datetime
 from dateutil.parser import parse as parse_date
 from dateutil import tz
 
-import sys
+
 import xbmcaddon
 from xbmcgui import ListItem
+
 
 def build_list(type, video, listing, response):
 
@@ -17,7 +20,7 @@ def build_list(type, video, listing, response):
     # Get the plugin url
     __url__ = sys.argv[0]
 
-    try:        
+    try:
         attrs = video['attributes']
         alternateTitle = attrs.get('alternateId')
         
@@ -39,7 +42,7 @@ def build_list(type, video, listing, response):
             
             title = av_startstr + ' - ' + attrs.get('name')
 
-        else:    
+        else:
             # Set the base title
             title = attrs.get('name')
         
@@ -93,7 +96,7 @@ def build_list(type, video, listing, response):
                 'title': title,
                 'sorttitle': title 
             }
-        else:    
+        else:
             labels = {
                 'title': title,
                 'sorttitle': title, 
@@ -108,7 +111,7 @@ def build_list(type, video, listing, response):
 
         if type == 'ondemand':
             isPlayable = 'false'
-        else:    
+        else:
             now = datetime.datetime.now(tz.tzutc())
             if av_start_local > now:
                 isPlayable = 'false'
@@ -117,11 +120,11 @@ def build_list(type, video, listing, response):
         
         item.setProperty('IsPlayable', isPlayable)
 
-        # Ondemand brings up a list of items to select, not play            
+        # Ondemand brings up a list of items to select, not play
         if type == 'ondemand':
-            url = '{0}?action=Select sport&sport={1}'.format(__url__, alternateTitle)   
+            url = '{0}?action=Select sport&sport={1}'.format(__url__, alternateTitle)
             isfolder = True
-        else:    
+        else:
             # Determine which stream to play
             if engine == 'inputstream.adaptive' and streamType == 'hls':
                 item.setMimeType('application/x-mpegURL')
@@ -158,5 +161,5 @@ def build_list(type, video, listing, response):
     
         # Add item to our listing
         listing.append((url, item, isfolder))
-    except:    
+    except:
         pass
