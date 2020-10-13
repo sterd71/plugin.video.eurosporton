@@ -23,7 +23,7 @@ def build_list(type, video, listing, response):
     try:
         attrs = video['attributes']
         alternateTitle = attrs.get('alternateId')
-        
+
         if type == 'sport':
             # Pull start time from availability window
             availability = video.get('attributes', {}).get('availabilityWindows', [])
