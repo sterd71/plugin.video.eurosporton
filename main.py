@@ -10,4 +10,4 @@ ADDON = xbmcaddon.Addon()
 
 if __name__ == '__main__':
     player.router(sys.argv[2])
-    
+
