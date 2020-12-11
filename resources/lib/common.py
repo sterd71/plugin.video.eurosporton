@@ -46,7 +46,16 @@ def build_list(type, video, listing, response):
             av_startstr = av_start_local.strftime("%H:%M")
             
             title = av_startstr + ' - ' + attrs.get('name')
-
+        elif type == 'ontv':
+            # Pull start time from schedule start
+            av_start = parse_date(attrs['scheduleStart'])
+            av_start_local = av_start.astimezone(tz.tzlocal())
+            channel = attrs.get('path')
+            if 'eurosport-1' in channel:
+                title = 'Eurosport 1: ' + attrs.get('name')
+            if 'eurosport-2' in channel:
+                title = 'Eurosport 2: ' + attrs.get('name')
+            
         else:
             # Set the base title
             title = attrs.get('name')
@@ -82,7 +91,7 @@ def build_list(type, video, listing, response):
             })
 
         # Set the premiered date
-        if type == 'daily':
+        if type == 'daily' or type == 'ontv':
             premiered = str(attrs.get('scheduleStart')[:10])
             timestamp = attrs.get('scheduleStart')
         

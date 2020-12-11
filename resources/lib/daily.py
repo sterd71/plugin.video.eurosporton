@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import xbmcaddon
 from xbmcplugin import addDirectoryItems, endOfDirectory
 from resources.lib.common import build_list
 
-ADDON = xbmcaddon.Addon()
-sortOrder = ADDON.getSetting('ondemand-sort-order')
 
 """
     Sort videos by the scheduleStart timestamp

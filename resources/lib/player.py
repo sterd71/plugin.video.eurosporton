@@ -11,6 +11,7 @@ from resources.lib.onschedule import onschedule_list
 from resources.lib.ondemand import ondemand_list
 from resources.lib.sport import sport_list
 from resources.lib.daily import daily_list
+from resources.lib.ontv import ontv_list
 
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
@@ -39,6 +40,8 @@ def router(paramstring):
   
     # Check the parameters passed to the plugin
     if params:
+        if params['action'] == 'On TV':
+          ontv_list(eurosport)
         if params['action'] == 'On schedule':
           onschedule_list(eurosport)
         if params['action'] == 'Select date':
@@ -83,6 +86,7 @@ Get the list of top menu items
 """
 def get_topMenu():
     listing = []
+    listing.append('On TV')
     listing.append('On schedule')
     listing.append('On demand')
     return listing  

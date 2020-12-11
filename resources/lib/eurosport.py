@@ -21,6 +21,12 @@ class Eurosport(object):
             'X-disco-params': 'realm=eurosport,,'  
         }
 
+    def ontv(self, collid, day):
+        return OntvResponse(
+            self.session.get(
+                '{0}/cms/collections/{1}?include=default&{2}'.format(ROOT_URL,collid,day)
+            ).json()
+        )
 
     def onschedule(self):
         return OnscheduleResponse(
@@ -61,6 +67,79 @@ class Eurosport(object):
             )
         ).json()
 
+"""
+    OntvResponse sends back a list of videos that have a start time before now and
+    and end time after now
+"""    
+class OntvResponse(object):
+    def __init__(self, data):
+        self._data = data
+
+    def videos(self, onlyAvailable=True):
+
+
+        def filterMethod(o):
+            
+            if o.get('type') != 'video':
+                return False
+            if not onlyAvailable:
+                return True
+
+            attributes = o.get('attributes', {})
+
+            # Exclude items not on a channel
+            materialType = attributes.get('materialType')
+            if materialType != 'LINEAR':
+                return False
+
+            # Only include items that are on now
+            if len(attributes) > 0:
+                av_start = parse_date(attributes['scheduleStart'])
+                av_end = parse_date(attributes['scheduleEnd'])
+                now = datetime.datetime.now(tz.tzutc())
+                return av_start <= now <= av_end
+
+            return False
+
+        return filter(
+            filterMethod,
+            self._data.get('included', [])
+        )
+
+
+
+    
+    def scheduleCollection(self, onlyAvailable=True):
+
+        def filterMethod(o):
+            if o.get('type') != 'collection':
+                return False
+            if not onlyAvailable:
+                return True
+                
+            return True    
+
+        return filter(
+            filterMethod,
+            self._data.get('included', [])
+        )
+
+    def images(self):
+        return filter(
+            lambda o: o.get('type') == 'image',
+            self._data.get('included', [])
+        )
+
+    def get_image_url(self, id):
+        wanted_images = list(
+            filter(
+                lambda i: i['id'] == id,
+                self.images()
+            )
+        )
+        if len(wanted_images) > 0:
+            return wanted_images[0]['attributes'].get('src')
+        return None
 
         
 """

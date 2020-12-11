@@ -72,4 +72,28 @@ def onschedule_list(eurosport):
 
     endOfDirectory(__handle__)
 
+"""
+    Return todays collection id
+"""    
+def getcollectionid(eurosport):
+
+    # Get the plugin url
+    __url__ = sys.argv[0]
+
+    # Get the plugin handle
+    __handle__ = int(sys.argv[1])
+
+    onschedule = eurosport.onschedule()
+    schedule_collection = onschedule.scheduleCollection()
+
+    
+    for schedule in schedule_collection:
+
+        try:
+            # Collection Id
+            collection_id = schedule.get('id')
+        except:    
+            pass
+
+    return collection_id
 
