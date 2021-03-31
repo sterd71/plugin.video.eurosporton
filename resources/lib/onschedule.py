@@ -3,6 +3,7 @@
 
 import sys
 from datetime import datetime
+import time
 from xbmcplugin import addDirectoryItems, endOfDirectory
 from xbmcgui import ListItem
 
@@ -51,7 +52,10 @@ def onschedule_list(eurosport):
                 options = schedule_filter.get('options')
                 for option in options:
                     schedule_str = option.get('value')
-                    schedule_date = datetime.strptime(schedule_str, '%Y-%m-%d')   
+                    try:
+                        schedule_date = datetime.strptime(schedule_str, '%Y-%m-%d')   
+                    except TypeError:
+                        schedule_date = datetime(*(time.strptime(schedule_str, '%Y-%m-%d')[0:6]))
                     schedule_format = '%d %B'
                     if schedule_str == date_today:
                         title = '[B][COLOR red]' + schedule_date.strftime(schedule_format) + '[/COLOR][/B]'

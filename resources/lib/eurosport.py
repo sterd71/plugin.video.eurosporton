@@ -77,7 +77,6 @@ class OntvResponse(object):
 
     def videos(self, onlyAvailable=True):
 
-
         def filterMethod(o):
             
             if o.get('type') != 'video':
