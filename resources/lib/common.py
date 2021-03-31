@@ -140,42 +140,15 @@ def build_list(type, video, listing, response):
             isfolder = True
         else:
             # Determine which stream to play
-#            if engine == 'inputstream.adaptive' and streamType == 'hls':
-#                item.setMimeType('application/x-mpegURL')
-#                item.setProperty('inputstreamaddon', 'inputstream.adaptive')
-#                item.setProperty('inputstream.adaptive.manifest_type', 'hls')
-#            
-#            elif engine == 'ffmpeg' and streamType == 'hls':
-#                item.setMimeType('application/x-mpegURL')
-#                item.setProperty('inputstreamclass', 'inputstream.ffmpegdirect')
-#                item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls,applehttp')
-#                item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-#                if type == 'ondemand':
-#                    item.setProperty('inputstream.ffmpegdirect.stream_mode', 'catchup')
-#                    item.setProperty('inputstream.ffmpegdirect.open_mode', 'ffmpeg')
-#                    item.setProperty('inputstream.ffmpegdirect.playback_as_live', 'true')
-#
-#            elif engine == 'inputstream.adaptive' and streamType == 'ism':
-#                item.setMimeType('text/xml')
-#                item.setProperty('inputstreamaddon', 'inputstream.adaptive')
-#                item.setProperty('inputstream.adaptive.manifest_type', 'ism')
-#            
-#            elif engine == 'ffmpeg' and streamType == 'ism':
-#                item.setProperty('inputstreamclass', 'inputstream.ffmpegdirect')
-#                item.setProperty('inputstream.ffmpegdirect.manifest_type', 'ism')
-#                item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-#                if type == 'ondemand':
-#                    item.setProperty('inputstream.ffmpegdirect.stream_mode', 'catchup')
-#                    item.setProperty('inputstream.ffmpegdirect.open_mode', 'ffmpeg')
-#                    item.setProperty('inputstream.ffmpegdirect.playback_as_live', 'true')
-#
+
             # Initialise properties
             mimetype = ''
             inputstreamtype = ''
             manifesttype = ''
-
             inputstream = ''
+            manifest = ''
 
+            
             # Matrix or earlier?
             if kodi_version > 18:
                 inputstream = 'inputstream'
@@ -185,34 +158,32 @@ def build_list(type, video, listing, response):
                 if engine == 'ffmpeg':
                     inputstream = 'inputstreamclass'
 
+            # Set manifest & inputstream type
+            if engine == 'inputstream.adaptive':
+                manifest = 'inputstream.adaptive.manifest_type'
+                inputstreamtype = 'inputstream.adaptive'
+            if engine == 'ffmpeg':
+                manifest = 'inputstream.ffmpegdirect.manifest_type'
+                inputstreamtype = 'inputstream.ffmpegdirect'
+                item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
 
             # Override settings for HLS streams
             if streamType == 'hls':
                 mimetype = 'application/x-mpegURL'
-                if engine == 'inputstream.adaptive':
-                    inputstreamtype = 'inputstream.adaptive'
-                    manifesttype = 'hls'
-                if engine == 'ffmpeg':
-                    inputstreamtype = 'inputstream.ffmpegdirect'
-                    manifesttype = 'hls,applehttp'
-                    item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+                manifesttype = 'hls'
 
             # Override settings for ISM streams
             if streamType == 'ism':
+                mimetype = 'text/xml'
                 manifesttype = 'ism'
-                if engine == 'inputstream.adaptive':
-                    mimetype = 'text/xml'
-                    inputstreamtype = 'inputstream.adaptive'
-                if engine == 'ffmpeg':
-                    mimetype = ''
-                    inputstreamtype = 'inputstream.ffmpegdirect'
-                    item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
 
 
             # Set properties
-            item.setMimeType(mimetype)
-            item.setProperty('inputstream.adaptive.manifest_type', manifesttype)
+            item.setContentLookup(False)
             item.setProperty(inputstream, inputstreamtype)
+            item.setProperty(manifest, manifesttype)
+            if (len(mimetype) != 0):
+                item.setMimeType(mimetype)
 
            
             # Extra properties for ism ondemand streams

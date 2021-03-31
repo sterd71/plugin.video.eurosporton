@@ -1,3 +1,7 @@
+v0.2.1
+- Fixed bug with OnSchedule not re-displaying after viewing OnDemand
+- Updated InputStream settings for Kodi Matrix
+
 v0.2.0
 - Removed On now, On earlier and On later
 - Added new On schedule

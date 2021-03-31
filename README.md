@@ -3,16 +3,11 @@
 This is built on the Eurosport2 addon created by [James Muscat](https://github.com/jamesremuscat/plugin.video.eurosport2) which itself was derived from the original Eurosport Player addon by [JinRonin](https://github.com/JinRonin/plugin.video.eurosportplayer)
 
 ## Latest
-Eurosport have changed their API for watching scheduled events so this part of the addon has been re-worked.
+ISM (Microsoft Smooth Streaming), streams were able to play using the inputstream.ffmpeg addon.  This is no longer the case and only HLS streams will play.
 
-On entry there is a new menu option called On Schedule.
+The code supporting ISM streams has been left in the addon in case this situation changes in the future.
 
-Selecting this option will display the dates in the current Eurosport schedule.
-
-Selecting a date will bring up the list of videos for that day.
-
-The OnDemand section is still working as before.
-
+Make sure your stream type is set to HLS.
 
 ## Stream support
 
@@ -28,7 +23,7 @@ The current status of each stream type is:
 
 | Engine |  HLS |  ISM  | DASH |
 | ---------- | :------: | :-------: | :-------: |
-| inputstream.adaptive | Working | Working | Not supported |
+| inputstream.adaptive | Working | Not working | Not supported |
 | inputstream.ffmpeg | Working | Not working | Not supported |
 
 Ensure you are using inputstream.adaptive version 2.4.5 and [PR-489](https://jenkins.kodi.tv/blue/organizations/jenkins/peak3d%2Finputstream.adaptive/detail/PR-489/1/artifacts/) which includes a fix for Eurosport hls streams.
