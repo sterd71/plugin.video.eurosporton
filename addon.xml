@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.eurosporton" name="EurosportOn" version="0.2.1" provider-name="Stephen Doody">
     <requires>
-        <import addon="xbmc.python" version="2.25.0"/>
+        <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.dateutil" version="2.8.1"/>
         <import addon="script.module.inputstreamhelper" version="0.3.3"/>
         <import addon="script.module.routing" version="0.2.0"/>
