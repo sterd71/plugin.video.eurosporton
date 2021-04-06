@@ -2,7 +2,10 @@
 
 import sys
 import logging
-from urlparse import parse_qsl
+try:
+  import urlparse
+except ImportError:
+  import urllib.parse as urlparse  
 import xbmcaddon
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItems, endOfDirectory, setContent, setResolvedUrl
@@ -36,7 +39,7 @@ def router(paramstring):
     setContent(__handle__, 'videos')
     
     # Parse a URL-encoded paramstring
-    params = dict(parse_qsl(paramstring[1:]))  
+    params = dict(urlparse.parse_qsl(paramstring[1:]))  
   
     # Check the parameters passed to the plugin
     if params:
