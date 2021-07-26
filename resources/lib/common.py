@@ -84,11 +84,14 @@ def build_list(type, video, listing, response):
         )
 
         if len(images) > 0:
-            image_url = response.get_image_url(images[0]['id'])
-            item.setArt({
-                'thumb': image_url,
-                'icon': image_url
-            })
+            try: 
+                image_url = response.get_image_url(images[0]['id'])
+                item.setArt({
+                    'thumb': image_url,
+                    'icon': image_url
+                })
+            except:
+                pass
 
         # Set the premiered date
         if type == 'daily' or type == 'ontv':
