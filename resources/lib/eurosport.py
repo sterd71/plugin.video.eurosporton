@@ -67,6 +67,20 @@ class Eurosport(object):
             )
         ).json()
 
+    def olyonnow(self):
+        return OntvResponse(
+            self.session.get(
+                '{0}/cms/routes/olympics/on-now?include=default'.format(ROOT_URL)
+            ).json()
+        )
+
+    def olyontoday(self):
+        return DailyResponse(
+            self.session.get(
+                '{0}/cms/routes/olympics/schedule?include=default'.format(ROOT_URL)
+            ).json()
+        )
+
 """
     OntvResponse sends back a list of videos that have a start time before now and
     and end time after now
@@ -104,41 +118,6 @@ class OntvResponse(object):
             filterMethod,
             self._data.get('included', [])
         )
-
-
-
-    
-    def scheduleCollection(self, onlyAvailable=True):
-
-        def filterMethod(o):
-            if o.get('type') != 'collection':
-                return False
-            if not onlyAvailable:
-                return True
-                
-            return True    
-
-        return filter(
-            filterMethod,
-            self._data.get('included', [])
-        )
-
-    def images(self):
-        return filter(
-            lambda o: o.get('type') == 'image',
-            self._data.get('included', [])
-        )
-
-    def get_image_url(self, id):
-        wanted_images = list(
-            filter(
-                lambda i: i['id'] == id,
-                self.images()
-            )
-        )
-        if len(wanted_images) > 0:
-            return wanted_images[0]['attributes'].get('src')
-        return None
 
         
 """

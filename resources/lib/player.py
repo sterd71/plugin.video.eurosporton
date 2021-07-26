@@ -12,6 +12,9 @@ from resources.lib.ondemand import ondemand_list
 from resources.lib.sport import sport_list
 from resources.lib.daily import daily_list
 from resources.lib.ontv import ontv_list
+from resources.lib.olympics import olympics_onnow
+from resources.lib.olympics import olympics_ontoday
+
 
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
@@ -52,6 +55,10 @@ def router(paramstring):
           sport_list(eurosport, params['sport'])
         if params['action'] == 'play':
           play_video(params['id'])
+        if params['action'] == 'Olympics: On now':
+          olympics_onnow(eurosport)
+        if params['action'] == 'Olympics: On today':
+          olympics_ontoday(eurosport)
     else:
         # If no parameters - then display the top menu
         list_topMenu()  
@@ -86,6 +93,8 @@ Get the list of top menu items
 """
 def get_topMenu():
     listing = []
+    listing.append('Olympics: On now')
+    listing.append('Olympics: On today')
     listing.append('On TV')
     listing.append('On schedule')
     listing.append('On demand')
