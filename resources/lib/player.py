@@ -16,7 +16,9 @@ from resources.lib.sport import sport_list
 from resources.lib.daily import daily_list
 from resources.lib.ontv import ontv_list
 from resources.lib.olympics import olympics_onnow
+from resources.lib.olympics import olympics_schedule
 from resources.lib.olympics import olympics_ontoday
+from resources.lib.olympics import olympics_pager
 
 
 ADDON = xbmcaddon.Addon()
@@ -40,10 +42,10 @@ Router function that calls other functions depending on the provided paramstring
 def router(paramstring):
 
     setContent(__handle__, 'videos')
-    
+
     # Parse a URL-encoded paramstring
     params = dict(urlparse.parse_qsl(paramstring[1:]))  
-  
+    
     # Check the parameters passed to the plugin
     if params:
         if params['action'] == 'On TV':
@@ -60,8 +62,12 @@ def router(paramstring):
           play_video(params['id'])
         if params['action'] == 'Olympics: On now':
           olympics_onnow(eurosport)
+        if params['action'] == 'Olympics: On schedule':
+          olympics_schedule(eurosport)
         if params['action'] == 'Olympics: On today':
-          olympics_ontoday(eurosport)
+          olympics_ontoday(eurosport, params['collid'],params['day'])
+        if params['action'] == 'OlympicsPager':
+          olympics_pager(eurosport, params['collid'],params['day'],params['pageNumber'])
     else:
         # If no parameters - then display the top menu
         list_topMenu()  
@@ -97,7 +103,7 @@ Get the list of top menu items
 def get_topMenu():
     listing = []
     listing.append('Olympics: On now')
-    listing.append('Olympics: On today')
+    listing.append('Olympics: On schedule')
     listing.append('On TV')
     listing.append('On schedule')
     listing.append('On demand')

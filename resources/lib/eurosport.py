@@ -74,10 +74,18 @@ class Eurosport(object):
             ).json()
         )
 
-    def olyontoday(self):
-        return DailyResponse(
+    def olyonschedule(self):
+        return OnscheduleResponse(
             self.session.get(
                 '{0}/cms/routes/olympics/schedule?include=default'.format(ROOT_URL)
+            ).json()
+        )
+
+    def olyontoday(self,collid,day,pageNumber):
+        return DailyResponse(
+            self.session.get(
+              #  '{0}/cms/routes/olympics/schedule?include=default'.format(ROOT_URL)
+              '{0}/cms/collections/{1}?include=default&{2}&page[items.number]={3}'.format(ROOT_URL,collid,day,pageNumber)
             ).json()
         )
 
