@@ -22,7 +22,7 @@ msgid "General"
 msgstr ""
 
 msgctxt "#30001"
-msgid "On demand"
+msgid "Authentication"
 msgstr ""
 
 msgctxt "#30002"
@@ -30,11 +30,11 @@ msgid "Sort order"
 msgstr ""
 
 msgctxt "#30003"
-msgid "Authentication"
+msgid "On demand"
 msgstr ""
 
 msgctxt "#30004"
-msgid "Login token"
+msgid "Username"
 msgstr ""
 
 msgctxt "#30005"
@@ -49,4 +49,7 @@ msgctxt "#30007"
 msgid "Stream type"
 msgstr ""
 
+msgctxt "#30008"
+msgid "Password"
+msgstr ""
 
