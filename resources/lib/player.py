@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import logging
 try:
   import urlparse
 except ImportError:
@@ -9,6 +8,10 @@ except ImportError:
 import xbmcaddon
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItems, endOfDirectory, setContent, setResolvedUrl
+from resources.lib.common_func.settings_base import Settings
+from resources.lib.common_func.logger_base import ESLogger
+from resources.lib.common_func.authenticate_base import Authenticate
+
 from resources.lib.eurosport import Eurosport
 from resources.lib.onschedule import onschedule_list
 from resources.lib.ondemand import ondemand_list
@@ -20,12 +23,21 @@ from resources.lib.olympics import olympics_schedule
 from resources.lib.olympics import olympics_ontoday
 from resources.lib.olympics import olympics_pager
 
+import web_pdb; web_pdb.set_trace()
 
+# Load the settings
+settings = Settings()
+
+# Set up logger
+eslogger = ESLogger()
+
+# Log in
+authenticate = Authenticate(settings)
 ADDON = xbmcaddon.Addon()
-logger = logging.getLogger(ADDON.getAddonInfo('id'))
 
-token = ADDON.getSetting('eurosport-token')
-logger.info('Using token: {}'.format(token))
+token = authenticate.getToken()
+eslogger.loginfo('Using token: {}'.format(token))
+
 eurosport = Eurosport(token)
 
 # Get the plugin url
