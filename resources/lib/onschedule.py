@@ -30,6 +30,7 @@ def onschedule_list(eurosport):
 
     onschedule = eurosport.onschedule()
     schedule_collection = onschedule.scheduleCollection()
+    collection_id = ""
 
     # Create list for items
     listing = []
@@ -89,6 +90,7 @@ def getcollectionid(eurosport):
 
     onschedule = eurosport.onschedule()
     schedule_collection = onschedule.scheduleCollection()
+    collection_id = ""
 
     
     for schedule in schedule_collection:

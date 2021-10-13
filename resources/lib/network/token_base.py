@@ -30,4 +30,4 @@ class Token(object):
             self._data = data
 
         def token(self):
-            return self._data.get('data.attributes.token', [])
+            return self._data.get('data', {}).get('attributes', {}).get('token', {})

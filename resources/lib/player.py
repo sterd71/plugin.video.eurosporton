@@ -36,7 +36,7 @@ authenticate = Authenticate(settings)
 ADDON = xbmcaddon.Addon()
 
 token = authenticate.getToken()
-eslogger.loginfo('Using token: {}'.format(token))
+#eslogger.loginfo('Using token: {}'.format(token))
 
 eurosport = Eurosport(token)
 
